@@ -6,8 +6,13 @@ const initState = {
     ]
   }
 
-const authreducer = (state = initState, action) => {
+const projectReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'CREATE_PROJECT':
+      console.log('create project', action.project)
+  }
+
     return state;
 }
 
-export default authreducer;
+export default projectReducer;
