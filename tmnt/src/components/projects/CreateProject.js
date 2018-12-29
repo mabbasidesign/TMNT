@@ -7,16 +7,19 @@ class CreateProject extends Component {
     title: '',
     content: ''
   }
+
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
     })
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
     // console.log(this.state);
     this.props.createProject(this.state);
   }
+ 
   render() {
     return (
       <div className="container">
@@ -45,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapDispatchToProps)(CreateProject);
+export default connect(null, mapDispatchToProps)(CreateProject);
