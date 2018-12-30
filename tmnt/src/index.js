@@ -47,7 +47,7 @@ const store = createStore(rootReducer,
       reduxFirestore(fbConfig) // redux bindings for firestore
     )
   );
-  
+
   ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();
