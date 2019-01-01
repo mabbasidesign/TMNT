@@ -43,18 +43,18 @@ import fbConfig from './config/fbConfig';
 const store = createStore(rootReducer,
     compose(
       applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
-      reactReduxFirebase(fbConfig, {userProfile: 'users', useFirestoreForProfile: true}), // redux binding for firebase
+      reactReduxFirebase(fbConfig, {attachAuthIsReady: true}, {userProfile: 'users', useFirestoreForProfile: true}), // redux binding for firebase
       reduxFirestore(fbConfig) // redux bindings for firestore
       // reduxFirestore(fbConfig, {attachAuthIsReady: true})
     )
   );
 
-  ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
-    serviceWorker.unregister()
-
-  // store.firebaseAuthIsReady.then(() => {
-  //   ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+  // ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
   //   serviceWorker.unregister()
-  // })
+
+  store.firebaseAuthIsReady.then(() => {
+    ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+    serviceWorker.unregister()
+  })
 
   
